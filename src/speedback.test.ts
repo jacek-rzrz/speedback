@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {Chair, nextChair, setupChairs, setupTables, Table} from "./speedback";
+import {Chair, ChairOrder, nextChair, setupChairs, setupTables, Table} from "./speedback";
 
 const aTable = (fields: Partial<Table> = {}): Table => {
     return {
@@ -64,11 +64,39 @@ test('initial chair assignment', () => {
 test('moving sits when even number of people', () => {
     const tables = setupTables(6);
     const [table1, table2, table3] = tables;
+    const next = nextChair(tables, ChairOrder.PRO);
 
-    expect(nextChair({table: table1, indexAtTable: 0}, tables)).toEqual({table: table1, indexAtTable: 0});
-    expect(nextChair({table: table2, indexAtTable: 0}, tables)).toEqual({table: table3, indexAtTable: 0});
-    expect(nextChair({table: table3, indexAtTable: 0}, tables)).toEqual({table: table3, indexAtTable: 1});
-    expect(nextChair({table: table3, indexAtTable: 1}, tables)).toEqual({table: table2, indexAtTable: 1});
-    expect(nextChair({table: table2, indexAtTable: 1}, tables)).toEqual({table: table1, indexAtTable: 1});
-    expect(nextChair({table: table1, indexAtTable: 1}, tables)).toEqual({table: table2, indexAtTable: 0});
+    expect(next({table: table1, indexAtTable: 0})).toEqual({table: table1, indexAtTable: 0});
+    expect(next({table: table2, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 0});
+    expect(next({table: table3, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 1});
+    expect(next({table: table3, indexAtTable: 1})).toEqual({table: table2, indexAtTable: 1});
+    expect(next({table: table2, indexAtTable: 1})).toEqual({table: table1, indexAtTable: 1});
+    expect(next({table: table1, indexAtTable: 1})).toEqual({table: table2, indexAtTable: 0});
+})
+
+test('moving sites when odd number of people', () => {
+    const tables = setupTables(7);
+    const [table1, table2, table3, table4] = tables;
+    const next = nextChair(tables, ChairOrder.PRO);
+
+    expect(next({table: table1, indexAtTable: 0})).toEqual({table: table2, indexAtTable: 0});
+    expect(next({table: table2, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 0});
+    expect(next({table: table3, indexAtTable: 0})).toEqual({table: table4, indexAtTable: 0});
+    expect(next({table: table4, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 1});
+    expect(next({table: table3, indexAtTable: 1})).toEqual({table: table2, indexAtTable: 1});
+    expect(next({table: table2, indexAtTable: 1})).toEqual({table: table1, indexAtTable: 1});
+    expect(next({table: table1, indexAtTable: 1})).toEqual({table: table1, indexAtTable: 0});
+})
+
+test('NAIVE moving sits when even number of people', () => {
+    const tables = setupTables(6);
+    const [table1, table2, table3] = tables;
+    const next = nextChair(tables, ChairOrder.NAIVE);
+
+    expect(next({table: table1, indexAtTable: 0})).toEqual({table: table2, indexAtTable: 0});
+    expect(next({table: table2, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 0});
+    expect(next({table: table3, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 1});
+    expect(next({table: table3, indexAtTable: 1})).toEqual({table: table2, indexAtTable: 1});
+    expect(next({table: table2, indexAtTable: 1})).toEqual({table: table1, indexAtTable: 1});
+    expect(next({table: table1, indexAtTable: 1})).toEqual({table: table1, indexAtTable: 0});
 })
