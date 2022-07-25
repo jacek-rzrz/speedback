@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --outDir=docs",
+    "build": "tsc && vite build --outDir=docs --base=/speedback",
     "preview": "vite preview",
     "test": "vitest"
   },
