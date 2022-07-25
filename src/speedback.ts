@@ -9,7 +9,7 @@ export type Chair = {
 }
 
 export enum ChairOrder {
-    PRO = 'PRO',
+    SMART = 'SMART',
     NAIVE = 'NAIVE',
 }
 
@@ -47,7 +47,7 @@ const nextChairIndex = (currentIndex: number, totalChairs: number, chairOrder: C
     const nextIndex = (currentIndex + 1) % totalChairs;
     let index = nextIndex;
 
-    if(evenNumberOfChairs && chairOrder === ChairOrder.PRO) {
+    if(evenNumberOfChairs && chairOrder === ChairOrder.SMART) {
         if(nextIndex === 1) {
             return 0;
         }

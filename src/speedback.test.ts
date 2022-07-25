@@ -64,7 +64,7 @@ test('initial chair assignment', () => {
 test('moving sits when even number of people', () => {
     const tables = setupTables(6);
     const [table1, table2, table3] = tables;
-    const next = nextChair(tables, ChairOrder.PRO);
+    const next = nextChair(tables, ChairOrder.SMART);
 
     expect(next({table: table1, indexAtTable: 0})).toEqual({table: table1, indexAtTable: 0});
     expect(next({table: table2, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 0});
@@ -77,7 +77,7 @@ test('moving sits when even number of people', () => {
 test('moving sites when odd number of people', () => {
     const tables = setupTables(7);
     const [table1, table2, table3, table4] = tables;
-    const next = nextChair(tables, ChairOrder.PRO);
+    const next = nextChair(tables, ChairOrder.SMART);
 
     expect(next({table: table1, indexAtTable: 0})).toEqual({table: table2, indexAtTable: 0});
     expect(next({table: table2, indexAtTable: 0})).toEqual({table: table3, indexAtTable: 0});
