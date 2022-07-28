@@ -9,7 +9,7 @@ import {ChairOrder} from "./speedback";
 
 function App() {
     const [teamSize, setTeamSize] = useState(8)
-    const [chairOrder, setChairOrder] = useState(ChairOrder.NAIVE);
+    const [chairOrder, setChairOrder] = useState(ChairOrder.SMART);
 
     return (
         <Grommet plain theme={{global: { colors: { brand: 'black'}}}}>
