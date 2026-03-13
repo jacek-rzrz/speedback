@@ -8,7 +8,7 @@ import {ChairOrder} from "./speedback";
 
 
 function App() {
-    const [teamSize, setTeamSize] = useState(8)
+    const [teamSize, setTeamSize] = useState(Math.min(ALL_PEOPLE.length, 8))
     const [chairOrder, setChairOrder] = useState(ChairOrder.SMART);
 
     return (

@@ -3,16 +3,11 @@ export type Person = {
 }
 
 export const ALL_PEOPLE: Person[] = [
-    {name: 'Allie'},
+    {name: 'Brigi'},
+    {name: 'Aayush'},
+    {name: 'Oana'},
+    {name: 'Paul'},
+    {name: 'Jose Carlos'},
+    {name: 'Jacek'},
     {name: 'Ben'},
-    {name: 'Charlie'},
-    {name: 'Dana'},
-    {name: 'Erica'},
-    {name: 'Felix'},
-    {name: 'Gabe'},
-    {name: 'Harriet'},
-    {name: 'Ian'},
-    {name: 'Jose'},
-    {name: 'Kate'},
-    {name: 'Leo'},
 ];
