@@ -9,7 +9,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "grommet": "^2.25.0",
+    "grommet": "^2.26.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
